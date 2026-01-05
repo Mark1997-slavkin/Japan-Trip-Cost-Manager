@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { BudgetService } from 'src/app/services/budget.service';
 import { CurrencyService } from 'src/app/services/currency.service';
 import { Country } from 'src/app/data/countries.data';
+import { getRandomFunSentence } from 'src/app/data/fun-sentences.data';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   showCountrySelector = false;
   searchQuery = '';
   budgetError = '';
+  funSentence = '';
 
   private budgetSubscription!: Subscription;
   private creditSubscription!: Subscription;
@@ -100,5 +102,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (cashAmount > 0) this.budgetService.setBudget(cashAmount);
 
     if (creditAmount > 0) this.budgetService.setBudget(creditAmount, true);
+
+    this.funSentence = getRandomFunSentence();
+  }
+
+  resetBudgets(): void {
+    this.budgetService.setBudget(0);
+    this.budgetService.setBudget(0, true);
+    this.funSentence = '';
   }
 }

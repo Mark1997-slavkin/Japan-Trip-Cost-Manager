@@ -94,13 +94,9 @@
             >
           </p>
         </div>
+        <p class="fun-sentence" *ngIf="funSentence">{{ funSentence }}</p>
       </div>
-      <button
-        (click)="budgetService.setBudget(0); budgetService.setBudget(0, true)"
-        class="btn btn-reset"
-      >
-        Reset
-      </button>
+      <button (click)="resetBudgets()" class="btn btn-reset">Reset</button>
     </div>
   </div>
 </header>
