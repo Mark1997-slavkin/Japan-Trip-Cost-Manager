@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   filteredCountries: Country[] = [];
   showCountrySelector = false;
   searchQuery = '';
+  budgetError = '';
 
   private budgetSubscription!: Subscription;
   private creditSubscription!: Subscription;
@@ -86,5 +87,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
         country.currency.toLowerCase().includes(lowerQuery) ||
         country.code.toLowerCase().includes(lowerQuery),
     );
+  }
+
+  setBudgets(cashAmount: number, creditAmount: number): void {
+    this.budgetError = '';
+
+    if (cashAmount <= 0 && creditAmount <= 0) {
+      this.budgetError = 'Please enter at least one budget amount';
+      return;
+    }
+
+    if (cashAmount > 0) this.budgetService.setBudget(cashAmount);
+
+    if (creditAmount > 0) this.budgetService.setBudget(creditAmount, true);
   }
 }

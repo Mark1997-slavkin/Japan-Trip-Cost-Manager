@@ -69,14 +69,12 @@
           </div>
         </div>
         <button
-          (click)="
-            budgetService.setBudget(+budgetInput.value);
-            budgetService.setBudget(+creditInput.value, true)
-          "
+          (click)="setBudgets(+budgetInput.value, +creditInput.value)"
           class="btn btn-primary"
         >
           Set
         </button>
+        <p class="error-message" *ngIf="budgetError">{{ budgetError }}</p>
       </div>
 
       <div *ngIf="currentBudget > 0 || creditBudget > 0" class="budget-display">
