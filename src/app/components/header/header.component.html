@@ -1,0 +1,67 @@
+<header class="header">
+  <div class="header-content">
+    <h1 class="title">Japan Trip Manager</h1>
+
+    <div class="budget-section">
+      <div
+        *ngIf="currentBudget === 0 && creditBudget === 0"
+        class="budget-form"
+      >
+        <div class="budget-inputs">
+          <div class="budget-input-group">
+            <p class="budget-label">Cash Budget</p>
+            <div class="input-group">
+              <span class="currency-symbol">¥</span>
+              <input
+                type="number"
+                #budgetInput
+                placeholder="0"
+                class="budget-input"
+              />
+            </div>
+          </div>
+          <div class="budget-input-group">
+            <p class="budget-label">Credit Budget</p>
+            <div class="input-group">
+              <span class="currency-symbol">¥</span>
+              <input
+                type="number"
+                #creditInput
+                placeholder="0"
+                class="budget-input"
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          (click)="
+            budgetService.setBudget(+budgetInput.value);
+            budgetService.setBudget(+creditInput.value, true)
+          "
+          class="btn btn-primary"
+        >
+          Set
+        </button>
+      </div>
+
+      <div *ngIf="currentBudget > 0 || creditBudget > 0" class="budget-display">
+        <div class="budget-numbers">
+          <p class="budget-amount">
+            <span class="budget-label-small">Cash Budget</span>
+            <span class="amount">¥{{ currentBudget | number }}</span>
+          </p>
+          <p class="budget-amount credit">
+            <span class="budget-label-small">Credit Budget</span>
+            <span class="amount">¥{{ creditBudget | number }}</span>
+          </p>
+        </div>
+      </div>
+      <button
+        (click)="budgetService.setBudget(0); budgetService.setBudget(0, true)"
+        class="btn btn-reset"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
+</header>

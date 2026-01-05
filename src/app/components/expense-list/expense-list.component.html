@@ -1,0 +1,88 @@
+<div class="expense-container">
+  <div class="add-expense-section">
+    <h2 class="section-title">Add New Expense</h2>
+    <div class="input-row">
+      <div class="input-wrapper">
+        <label class="input-label">Expense Name</label>
+        <input
+          class="expense-input"
+          placeholder="e.g. Train ticket"
+          #expenseName
+          type="text"
+        />
+      </div>
+      <div class="input-wrapper">
+        <label class="input-label">Cost</label>
+        <div class="cost-input-group">
+          <span class="currency-symbol">¥</span>
+          <input
+            class="expense-input cost-input"
+            placeholder="0"
+            #expenseCost
+            type="number"
+          />
+        </div>
+      </div>
+      <div class="input-wrapper payment-wrapper">
+        <label class="input-label">Payment Method</label>
+        <div class="payment-toggle">
+          <button
+            class="payment-btn"
+            [class.active]="!isCreditCard"
+            (click)="isCreditCard = false"
+          >
+            Cash
+          </button>
+          <button
+            class="payment-btn credit"
+            [class.active]="isCreditCard"
+            (click)="isCreditCard = true"
+          >
+            Credit
+          </button>
+        </div>
+      </div>
+      <button
+        class="btn-add"
+        (click)="
+          addExpense(
+            expenseName.value,
+            +expenseCost.value,
+            expenseName,
+            expenseCost
+          )
+        "
+      >
+        + Add
+      </button>
+    </div>
+  </div>
+
+  <div class="expenses-list-section">
+    <h2 class="section-title">Expenses List</h2>
+    <div class="expenses-list" *ngIf="listOfExpenses.length > 0">
+      <div
+        class="expense-item"
+        *ngFor="let expense of listOfExpenses; let i = index"
+        [class.credit-expense]="expense.isCreditCard"
+      >
+        <div class="expense-info">
+          <span class="expense-number" [class.credit]="expense.isCreditCard">{{
+            i + 1
+          }}</span>
+          <span class="expense-name">{{ expense.name }}</span>
+          <span class="payment-badge" *ngIf="expense.isCreditCard">Credit</span>
+        </div>
+        <div class="expense-actions">
+          <span class="expense-cost" [class.credit]="expense.isCreditCard"
+            >¥{{ expense.cost | number }}</span
+          >
+          <button class="btn-delete" (click)="removeExpense(i)">X</button>
+        </div>
+      </div>
+    </div>
+    <div class="empty-state" *ngIf="listOfExpenses.length === 0">
+      <p>No expenses yet. Add your first expense above!</p>
+    </div>
+  </div>
+</div>
