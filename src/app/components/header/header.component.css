@@ -2,6 +2,7 @@
   background: linear-gradient(135deg, #d4463c 0%, #c73e34 50%, #a33029 100%);
   padding: 24px 32px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
 }
 
 .header-content {
@@ -14,6 +15,12 @@
   gap: 20px;
 }
 
+.title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .title {
   color: white;
   font-size: 28px;
@@ -21,6 +28,107 @@
   margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   letter-spacing: 0.5px;
+}
+
+.country-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  overflow: visible;
+}
+
+.country-currency-badge {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.country-input {
+  border: none;
+  background: transparent;
+  color: white;
+  padding: 8px 12px;
+  font-size: 13px;
+  width: 160px;
+  outline: none;
+}
+
+.country-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.country-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  width: 280px;
+  max-height: 300px;
+  overflow-y: auto;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.no-results {
+  padding: 20px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+}
+
+.country-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease;
+  gap: 16px;
+}
+
+.country-option:hover {
+  background: #f5f5f5;
+}
+
+.country-option.selected {
+  background: #fff0ef;
+}
+
+.country-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.country-currency-code {
+  font-size: 12px;
+  color: #666;
+  background: #f0f0f0;
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 .budget-section {
@@ -173,6 +281,26 @@
 
   .title {
     font-size: 22px;
+  }
+
+  .title-section {
+    align-items: center;
+  }
+
+  .country-dropdown {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
   }
 
   .budget-section {
