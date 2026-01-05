@@ -88,4 +88,8 @@
       <p>No expenses yet. Add your first expense above!</p>
     </div>
   </div>
+
+  <button *ngIf="hasBudget()" class="btn-end-trip" (click)="endTrip()">
+    End Trip
+  </button>
 </div>

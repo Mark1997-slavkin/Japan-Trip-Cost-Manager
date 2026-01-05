@@ -8,8 +8,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'japan-trip';
   showSplash = true;
+  activeTab: 'expenses' | 'trips' = 'expenses';
 
   onSplashComplete(): void {
     this.showSplash = false;
+  }
+
+  setActiveTab(tab: 'expenses' | 'trips'): void {
+    this.activeTab = tab;
   }
 }

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ExpenseListComponent } from './components/expense-list/expense-list.component';
 import { FloatingScreenComponent } from './components/floating-screen/floating-screen.component';
+import { PreviousTripsComponent } from './components/previous-trips/previous-trips.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { FloatingScreenComponent } from './components/floating-screen/floating-s
     HeaderComponent,
     ExpenseListComponent,
     FloatingScreenComponent,
+    PreviousTripsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

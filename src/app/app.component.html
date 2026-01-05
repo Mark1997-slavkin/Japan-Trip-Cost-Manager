@@ -5,6 +5,28 @@
 
 <ng-container *ngIf="!showSplash">
   <app-header></app-header>
-  <app-expense-list></app-expense-list>
+
+  <div class="tabs">
+    <button
+      class="tab-btn"
+      [class.active]="activeTab === 'expenses'"
+      (click)="setActiveTab('expenses')"
+    >
+      Current Trip
+    </button>
+    <button
+      class="tab-btn"
+      [class.active]="activeTab === 'trips'"
+      (click)="setActiveTab('trips')"
+    >
+      Previous Trips
+    </button>
+  </div>
+
+  <app-expense-list
+    *ngIf="activeTab === 'expenses'"
+    (tripEnded)="setActiveTab('trips')"
+  ></app-expense-list>
+  <app-previous-trips *ngIf="activeTab === 'trips'"></app-previous-trips>
   <router-outlet></router-outlet>
 </ng-container>

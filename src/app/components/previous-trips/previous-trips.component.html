@@ -1,0 +1,36 @@
+<div class="trips-container">
+  <h2 class="section-title">Previous Trips</h2>
+
+  <div class="trips-grid" *ngIf="trips.length > 0">
+    <div class="trip-card" *ngFor="let trip of trips">
+      <button class="delete-btn" (click)="deleteTrip(trip.id)">X</button>
+      <h3 class="country-name">{{ trip.countryName }}</h3>
+      <div class="trip-stats">
+        <div class="stat">
+          <span class="stat-label">Budget</span>
+          <span class="stat-value"
+            >{{ trip.currencySymbol }}{{ getTotalBudget(trip) | number }}</span
+          >
+        </div>
+        <div class="stat">
+          <span class="stat-label">Used</span>
+          <span class="stat-value used"
+            >{{ trip.currencySymbol }}{{ getTotalUsed(trip) | number }}</span
+          >
+        </div>
+      </div>
+      <div class="usage-bar">
+        <div
+          class="usage-fill"
+          [style.width.%]="getUsagePercentage(trip)"
+        ></div>
+      </div>
+      <span class="usage-percent">{{ getUsagePercentage(trip) }}% used</span>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="trips.length === 0">
+    <p>No previous trips yet.</p>
+    <p>Complete your current trip to see it here!</p>
+  </div>
+</div>

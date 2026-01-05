@@ -324,3 +324,31 @@
     padding: 3px 6px;
   }
 }
+
+.btn-end-trip {
+  display: block;
+  width: 100%;
+  margin-top: 32px;
+  padding: 20px 40px;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
+  background: linear-gradient(135deg, #d4463c 0%, #a33029 100%);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(212, 70, 60, 0.3);
+}
+
+.btn-end-trip:hover {
+  background: linear-gradient(135deg, #c73e34 0%, #8a2820 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212, 70, 60, 0.4);
+}
+
+.btn-end-trip:active {
+  transform: translateY(0);
+}
