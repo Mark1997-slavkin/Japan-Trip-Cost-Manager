@@ -5,9 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ExpenseListComponent } from './components/expense-list/expense-list.component';
+import { FloatingScreenComponent } from './components/floating-screen/floating-screen.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ExpenseListComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    ExpenseListComponent,
+    FloatingScreenComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

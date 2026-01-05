@@ -18,28 +18,33 @@ export class BudgetService {
     );
   }
 
+  private getBudgetConfig(isCredit: boolean) {
+    return {
+      budget$: isCredit ? this.creditBudget$ : this.currentBudget$,
+      key: isCredit ? 'creditBudget' : 'currentBudget',
+    };
+  }
+
   setBudget(amount: number, isCredit: boolean = false): void {
-    const key = isCredit ? 'creditBudget' : 'currentBudget';
-    const budget$ = isCredit ? this.creditBudget$ : this.currentBudget$;
+    const { budget$, key } = this.getBudgetConfig(isCredit);
     this.localStorageService.setItem(key, amount);
     budget$.next(amount);
   }
 
   getBudget(isCredit: boolean = false): Observable<number> {
-    return isCredit ? this.creditBudget$.asObservable() : this.currentBudget$.asObservable();
+    const { budget$ } = this.getBudgetConfig(isCredit);
+    return budget$.asObservable();
   }
 
   subtractFromBudget(amount: number, isCredit: boolean = false): void {
-    const budget$ = isCredit ? this.creditBudget$ : this.currentBudget$;
-    const key = isCredit ? 'creditBudget' : 'currentBudget';
+    const { budget$, key } = this.getBudgetConfig(isCredit);
     const newBudget = budget$.value - amount;
     this.localStorageService.setItem(key, newBudget);
     budget$.next(newBudget);
   }
 
   addToBudget(amount: number, isCredit: boolean = false): void {
-    const budget$ = isCredit ? this.creditBudget$ : this.currentBudget$;
-    const key = isCredit ? 'creditBudget' : 'currentBudget';
+    const { budget$, key } = this.getBudgetConfig(isCredit);
     const newBudget = budget$.value + amount;
     this.localStorageService.setItem(key, newBudget);
     budget$.next(newBudget);

@@ -1,0 +1,23 @@
+<div
+  class="floating-screen"
+  *ngIf="showFirstScreen"
+  [class.fade-out]="fadeOutFirst"
+>
+  <div class="screen-content">
+    <h2 class="screen-title">Welcome</h2>
+    <p>Your yen, your rules. Track every coin so you can splurge guilt-free.</p>
+    <p>No more "wait, where did my money go?" moments.</p>
+  </div>
+</div>
+
+<div
+  class="floating-screen second"
+  *ngIf="showSecondScreen"
+  [class.fade-out]="fadeOutSecond"
+>
+  <div class="screen-content">
+    <h2 class="screen-title">Let's Get Started</h2>
+    <p>Two taps. That's all it takes to log an expense.</p>
+    <p>Budget like a pro, travel like a legend.</p>
+  </div>
+</div>

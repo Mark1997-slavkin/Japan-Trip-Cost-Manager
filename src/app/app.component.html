@@ -1,3 +1,10 @@
-<app-header></app-header>
-<app-expense-list></app-expense-list>
-<router-outlet></router-outlet>
+<app-floating-screen
+  *ngIf="showSplash"
+  (splashComplete)="onSplashComplete()"
+></app-floating-screen>
+
+<ng-container *ngIf="!showSplash">
+  <app-header></app-header>
+  <app-expense-list></app-expense-list>
+  <router-outlet></router-outlet>
+</ng-container>

@@ -28,7 +28,14 @@ export class ExpenseListComponent implements OnInit {
     nameInput: HTMLInputElement,
     costInput: HTMLInputElement,
   ): void {
-    this.listOfExpenses.push({ name, cost, isCreditCard: this.isCreditCard });
+    if (!name.trim()) return;
+    if (!cost || cost <= 0) return;
+
+    this.listOfExpenses.push({
+      name: name.trim(),
+      cost,
+      isCreditCard: this.isCreditCard,
+    });
     this.LocalStorageService.setItem('expenses', this.listOfExpenses);
 
     this.BudgetService.subtractFromBudget(cost, this.isCreditCard);
